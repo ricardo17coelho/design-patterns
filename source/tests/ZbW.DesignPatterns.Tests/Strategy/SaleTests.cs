@@ -36,5 +36,31 @@ namespace ZbW.DesignPatterns.Tests.Strategy
             // Assert
             result.Should().Be(80);
         }
+
+        [Fact]
+        public void GetTotal_WhenTotal100And20TimeDependentPercentageAtAM_Then80()
+        {
+            // Arrange
+            var sale = new Sale(100, new TimeDependentPricingStrategy(DateTime.MinValue, 20));
+
+            // Act
+            var result = sale.GetTotal();
+
+            // Assert
+            result.Should().Be(80);
+        }
+
+        [Fact]
+        public void GetTotal_WhenTotal100And20TimeDependentPercentageAtPM_Then60()
+        {
+            // Arrange
+            var sale = new Sale(100, new TimeDependentPricingStrategy(DateTime.MaxValue, 20));
+
+            // Act
+            var result = sale.GetTotal();
+
+            // Assert
+            result.Should().Be(60);
+        }
     }
 }
