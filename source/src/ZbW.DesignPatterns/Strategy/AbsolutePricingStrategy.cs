@@ -16,18 +16,15 @@ namespace ZbW.DesignPatterns.Strategy
             _absoluteDiscount = absoluteDiscount;
         }
 
-        public decimal GetDiscount(Sale sale)
-        {
-            throw new NotImplementedException();
-        }
 
-        public decimal GetTotal(Sale sale)
+        public decimal GetDiscount(Sale sale)
         {
             if (sale.Amount >= _limit)
             {
-                return sale.Amount - _absoluteDiscount;
+                return _absoluteDiscount;
             }
-            return sale.Amount;
+
+            return 0m;
         }
     }
 }

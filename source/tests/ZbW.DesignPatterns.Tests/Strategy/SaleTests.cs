@@ -24,17 +24,20 @@ namespace ZbW.DesignPatterns.Tests.Strategy
             result.Should().Be(90);
         }
 
-        [Fact]
-        public void GetDiscount_WhenTotalIsOverLimit_Then80()
+        [Theory]
+        [InlineData("100", "100", "90")]
+        [InlineData("100", "99", "99")]
+        [InlineData("100", "101", "91")]
+        public void AbsoluteDiscountOverThresholdStrategy(string limit, string amount, string expectedResult)
         {
             // Arrange
-            var absolutePricingStrategy = new AbsolutePricingStrategy(100M, 20M);
+            var absolutePricingStrategy = new AbsolutePricingStrategy(decimal.Parse(limit), 10m);
 
             // Act
-            var result = absolutePricingStrategy.GetTotal(new Sale(100, new PercentagePricingStrategy(10)));
+            var result = new Sale(decimal.Parse(amount), absolutePricingStrategy).GetTotal();
 
             // Assert
-            result.Should().Be(80);
+            result.Should().Be(decimal.Parse(expectedResult));
         }
 
         [Fact]
