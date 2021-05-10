@@ -65,5 +65,18 @@ namespace ZbW.DesignPatterns.Tests.Strategy
             // Assert
             result.Should().Be(60);
         }
+
+        [Fact]
+        public void Discount_WhenNoDiscount_ReturnSameAmount()
+        {
+            // Arrange
+            var noDiscountStratgey = new NullDiscountStrategy();
+
+            // Act
+            var result = new Sale(100m, noDiscountStratgey).GetTotal() ;
+
+            // Assert
+            result.Should().Be(100);
+        }
     }
 }
