@@ -23,5 +23,18 @@ namespace ZbW.DesignPatterns.Tests.Strategy
             // Assert
             result.Should().Be(90);
         }
+
+        [Fact]
+        public void GetDiscount_WhenTotalIsOverLimit_Then80()
+        {
+            // Arrange
+            var absolutePricingStrategy = new AbsolutePricingStrategy(100M, 20M);
+
+            // Act
+            var result = absolutePricingStrategy.GetTotal(new Sale(100, new PercentagePricingStrategy(10)));
+
+            // Assert
+            result.Should().Be(80);
+        }
     }
 }
