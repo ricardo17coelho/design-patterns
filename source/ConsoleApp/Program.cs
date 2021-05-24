@@ -44,7 +44,6 @@ namespace ConsoleApp
             Console.WriteLine(valenciaFactoryClient.GetNonVegiePizzaName());
             Console.WriteLine(valenciaFactoryClient.GetVegiePizzaName());
 
-            Console.ReadKey();
 
             Console.ReadKey();
         }
